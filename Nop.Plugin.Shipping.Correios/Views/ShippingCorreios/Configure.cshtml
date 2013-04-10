@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Shipping.Correios.Models.CorreiosShippingModel
+@using Nop.Web.Framework;
+@using (Html.BeginForm())
+{
+    
+    if (ViewData["sucesso"] != null)
+    {
+        <div class="messageBox messageBoxSuccess">
+            @ViewData["sucesso"].ToString()
+        </div>
+        <div class="clear">
+        </div>
+    }
+    else if (ViewData["erro"] != null)
+    {
+        <div class="messageBox messageBoxSuccess">
+            @ViewData["erro"].ToString()
+        </div>
+        <div class="clear">
+        </div>
+    }
+    
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Url):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Url)
+                @Html.ValidationMessageFor(model => model.Url)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CodigoEmpresa):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.CodigoEmpresa)
+                @Html.ValidationMessageFor(model => model.CodigoEmpresa)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Senha):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Senha)
+                @Html.ValidationMessageFor(model => model.Senha)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Cep de Origem:
+            </td>
+            <td class="adminData">
+                Configure nas opções de envio do NopCommerce (ZIP Code). Formato: 00000000
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CustoAdicionalEnvio):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.CustoAdicionalEnvio)
+                @Html.ValidationMessageFor(model => model.CustoAdicionalEnvio)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.DiasUteisAdicionais):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.DiasUteisAdicionais)
+                @Html.ValidationMessageFor(model => model.DiasUteisAdicionais)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.IncluirAvisoRecebimento):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IncluirAvisoRecebimento)
+                @Html.ValidationMessageFor(model => model.IncluirAvisoRecebimento)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.IncluirMaoPropria):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IncluirMaoPropria)
+                @Html.ValidationMessageFor(model => model.IncluirMaoPropria)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.IncluirValorDeclarado):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IncluirValorDeclarado)
+                @Html.ValidationMessageFor(model => model.IncluirValorDeclarado)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Serviços disponíveis para calculo via WebService:
+                <br />
+            </td>
+            <td class="adminData">
+                <div style="height: 250px; width: 300px; overflow: auto; border: solid 1px #bbb;">
+                    @foreach (var csd in Model.AvailableCarrierServices)
+                    {
+                        <input type="checkbox" name="CheckedCarrierServices" value="@(csd)" @(Model.CarrierServicesOffered.Contains(csd) ? " checked=\"checked\"" : null) <text> /></text>
+                        <label>@csd</label>
+                        <br />
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <label>** Em caso de dúvidas, problemas ou sugestões, entre em contato comigo: sergio@sergioluiz.com</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="save" value="save" class="t-button">
+                    Salvar</button>
+            </td>
+        </tr>
+    </table>    
+}

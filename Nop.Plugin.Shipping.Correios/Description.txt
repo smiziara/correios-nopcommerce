@@ -1,0 +1,8 @@
+﻿Group: Shipping rate computation
+FriendlyName: Correios
+SystemName: Shipping.Correios
+Version: 1.20
+SupportedVersions: 2.50, 2.60
+Author: Sergio Luiz Miziara Junior
+DisplayOrder: 1
+FileName: Nop.Plugin.Shipping.Correios.dll
